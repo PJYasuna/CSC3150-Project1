@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
 		else {
 			printf("I'm the parent process, my pid = %d\n", getpid());
 
-			wait(&status);
+			waitpid(pid, &status, WUNTRACED);
 			if (WIFEXITED(status)) {
 				printf("Normal termination with EXIT STATUS = %d\n", WEXITSTATUS(status));
 			}
