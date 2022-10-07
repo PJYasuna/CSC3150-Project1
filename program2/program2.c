@@ -34,7 +34,7 @@ static struct task_struct *task;
 
 int my_exec(void) {
   int ans;
-  const char path[] = "/home/vagrant/csc3150/program2/test";
+  const char path[] = "/home/vagrant/csc3150/Assignment_1_120090521/source/program2/test";
   struct filename *my_filename = getname_kernel(path);
   printk("[program2] : child process");
   ans = do_execve(my_filename, NULL, NULL);
