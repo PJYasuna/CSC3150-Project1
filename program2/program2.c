@@ -58,13 +58,13 @@ void my_wait(pid_t pid) {
 
   wo.wo_type = type;
   wo.wo_pid = wo_pid;
-  wo.wo_flags = WEXITED;
+  wo.wo_flags = WEXITED|WUNTRACED;
   wo.wo_info = NULL;
   wo.wo_stat = (int __user)status;
   wo.wo_rusage = NULL;
 
   a = do_wait(&wo);
-
+  // printk("%d\n", wo.wo_stat);
   switch (wo.wo_stat) {
   case 134:
     printk("[program2] : get SIGABRT signal\n");
@@ -134,6 +134,11 @@ void my_wait(pid_t pid) {
     printk("[program2] : get SIGTRAP signal\n");
     printk("[program2] : child process has trap error\n");
     printk("[program2] : The return signal is 5\n");
+    break;
+  case 4991:
+    printk("[program2] : get SIGSTOP signal\n");
+    printk("[program2] : child process has stopped\n");
+    printk("[program2] : The return signal is 19\n");
     break;
   }
 
